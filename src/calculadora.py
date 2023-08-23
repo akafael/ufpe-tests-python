@@ -1,7 +1,7 @@
 class Calculator():
-  """
-  Calculator Python
-  """
+    """
+    Calculator Python
+    """
 
     def addition(self, a, b):
         return a + b
