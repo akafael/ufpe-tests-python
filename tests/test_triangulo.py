@@ -5,25 +5,28 @@ class TestTriangulo():
     """
     Test function triangle_type
     """
-    def test_isosceles_triangle(self):
+    def test_equilateral_triangle(self):
         """
-        Ensure that the triangle_type funtion return 'Scalene'
+        Ensure that the triangle_type funtion return 'Equilateral'
         whenver all inputs are equal
         """
         sideSize = 20
         triangleType = triangle_type(sideSize,sideSize,sideSize)
 
-        assert triangleType == 'Scalene'
-
-    def test_equilateral_triangle(self):
-        """
-        Ensure that the triangle_type funtion return 'Scalene'
-        whenver all inputs are equal
-        """
-        sideSize = 20
-        triangleType = triangle_type(sideSize,sideSize,10)
-
         assert triangleType == 'Equilateral'
+
+    @pytest.mark.parametrize( ("a", "b", "c"),
+                              [(10,10,5),
+                               (5,10,10),
+                               (10,5,10)] )
+    def test_isosceles_triangle(self,a,b,c):
+        """
+        Ensure that the triangle_type funtion return 'Isosceles'
+        whenver exact 2 inputs are equal
+        """
+        triangleType = triangle_type(a,b,c)
+
+        assert triangleType == 'Isosceles'
 
     @pytest.mark.parametrize( ("a", "b", "c"),
                               [(1,2,10),
