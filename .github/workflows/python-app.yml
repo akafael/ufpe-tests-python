@@ -9,8 +9,7 @@ on:
   pull_request:
     branches: [ "main" ]
 
-permissions:
-  contents: read
+permissions: write-all
 
 jobs:
   build:
@@ -62,4 +61,3 @@ jobs:
         unique-id-for-comment: python3.8
         junitxml-path: pytest.xml
         junitxml-title: My JUnit Xml Summary Title
-            
