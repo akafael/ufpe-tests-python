@@ -1,4 +1,6 @@
 import pytest
+import random
+
 #from src.api import convert
 
 def stub_convert(value:float,input_currency:str, output_currency:str) -> float:
@@ -11,7 +13,10 @@ convert = stub_convert
 
 class TestAPI():
     def test_same_currency(self):
-        value = 10.0
+        """
+        Ensure it will always return the same input value if the input and output currency are exact the same
+        """
+        value = 1e5 * random.random()
         currency = "BRL"
 
         converted_value = convert(value,currency,currency) 
@@ -20,6 +25,9 @@ class TestAPI():
         assert( value == converted_value )
 
     def test_other_currency(self):
+        """
+        Ensure it always return the output currency when currency are different
+        """
         value = 10.0
         input_currency = "BRL"
         output_currency = "USA"
