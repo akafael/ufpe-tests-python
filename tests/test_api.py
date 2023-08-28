@@ -24,6 +24,22 @@ class TestAPI():
         assert( type(converted_value) == float )
         assert( value == converted_value )
 
+
+    def test_symetric_conversion(self):
+        """
+        Ensure that conveting a value to an intermediate currency and back again will return the same value
+        """
+        value = 10.0
+        input_currency = "BRL"
+        output_currency = "USA"
+
+        converted_value = convert(value,input_currency,output_currency) 
+        converted_back_value = convert(converted_value,output_currency,input_currency) 
+
+        assert( type(converted_value) == float )
+        assert( converted_back_value == converted_value )
+
+
     def test_other_currency(self):
         """
         Ensure it always return the output currency when currency are different
