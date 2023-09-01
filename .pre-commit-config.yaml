@@ -1,0 +1,43 @@
+# Usage:
+# Install pre-commit: pip install pre-commit
+# copy this file for the project's root folder and rename to .pre-commit-config.yaml
+# then run 'pre-commit install' inside the git repository
+# be happy
+#
+# you may also run 'pre-commit install -c ~/path/to/.pre-commit-config.yaml'
+# inside the git repository if you dont want to add it to the version control tree
+
+repos:
+-   repo: https://github.com/pre-commit/mirrors-yapf
+    rev: v0.31.0
+    hooks:
+    -   id: yapf
+        name: Ensure PEP-8 complience for all Python files
+        args:
+          - '--style=pep8'
+          - '--parallel'
+          - '--in-place'
+        files: \.(py)$
+
+-   repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v3.2.0
+    hooks:
+    -   id: end-of-file-fixer
+    -   id: check-yaml
+    -   id: check-added-large-files
+    -   id: check-merge-conflict
+
+-   repo: local
+    hooks:
+    -   id: pytest
+        name: Ensure all tests are passing
+        entry: pytest
+        language: system
+        args:
+          - '--junitxml=pytest.xml'
+          - '--cov-report=xml'
+          - '--cov=src'
+          - '-v'
+        files: \.(py)$
+        always_run: true
+        pass_filenames: false
